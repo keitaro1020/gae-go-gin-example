@@ -1,9 +1,9 @@
 package app
 
 import (
-	"net/http"
 	"github.com/gin-gonic/gin"
 	"github.com/keitaro1020/gae-go-gin-example/handler"
+	"net/http"
 )
 
 func init() {

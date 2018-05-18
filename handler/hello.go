@@ -2,9 +2,9 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
-	"google.golang.org/appengine/log"
 	"google.golang.org/appengine"
+	"google.golang.org/appengine/log"
+	"net/http"
 )
 
 func (h *Handler) Hello(c *gin.Context) {
