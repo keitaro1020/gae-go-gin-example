@@ -1,0 +1,16 @@
+service: gae-go-gin-example
+runtime: go
+env: standard
+threadsafe: true
+api_version: go1.8
+
+handlers:
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
+- url: /.*
+  script: _go_app
+  secure: always
+
+skip_files:
+- handler/
