@@ -13,4 +13,6 @@ handlers:
   secure: always
 
 skip_files:
+- domain/
 - handler/
+- repository/
