@@ -18,10 +18,12 @@ func router() http.Handler {
 	r.GET("/hello", h.Hello)
 
 	b := r.Group("/books")
-	b.GET("", h.GetBooks)
-	b.POST("", h.CreateBook)
-	b.GET("/:id", h.GetBook)
-	b.PUT("/:id", h.PutBook)
+	{
+		b.GET("", h.GetBooks)
+		b.POST("", h.CreateBook)
+		b.GET("/:id", h.GetBook)
+		b.PUT("/:id", h.PutBook)
+	}
 
 	return r
 }

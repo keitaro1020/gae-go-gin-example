@@ -24,5 +24,5 @@ func ErrorResponse(c *gin.Context, err error) {
 		ec = http.StatusNotFound
 	}
 
-	c.JSON(ec, err)
+	c.JSON(ec, gin.H{"error": err.Error()})
 }
