@@ -18,37 +18,38 @@ func (h *Handler) CreateBook(c *gin.Context) {
 	}
 
 	r := repository.NewBookRepository()
-	b, err := r.PutBook(ac, b)
+	br, err := r.PutBook(ac, b)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, err)
 		return
 	}
 
-	c.JSON(http.StatusCreated, b)
+	c.JSON(http.StatusCreated, br)
 }
 
 func (h *Handler) PutBook(c *gin.Context) {
 	ac := appengine.NewContext(c.Request)
 
 	r := repository.NewBookRepository()
-	b, err := r.GetBookByID(ac, c.Param("id"))
+	br, err := r.GetBookByID(ac, c.Param("id"))
 	if err != nil {
 		ErrorResponse(c, err)
 		return
 	}
 
+	b := domain.NewBook(c.Param("id"))
 	if err := c.Bind(b); err != nil {
 		ErrorResponse(c, err)
 		return
 	}
 
-	b, err = r.PutBook(ac, b)
+	br, err = r.PutBook(ac, b)
 	if err != nil {
 		ErrorResponse(c, err)
 		return
 	}
 
-	c.JSON(http.StatusCreated, b)
+	c.JSON(http.StatusCreated, br)
 }
 
 func (h *Handler) GetBooks(c *gin.Context) {

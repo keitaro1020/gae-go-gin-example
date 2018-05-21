@@ -11,7 +11,7 @@ func NewBookRepository() *BookRepository {
 	return &BookRepository{}
 }
 
-func (r *BookRepository) GetBookByID(c context.Context, bId string) (*domain.Book, error) {
+func (r *BookRepository) GetBookByID(c context.Context, bId string) (*domain.BookRef, error) {
 	bm, err := BoomFromContext(c)
 	if err != nil {
 		return nil, err
@@ -23,10 +23,10 @@ func (r *BookRepository) GetBookByID(c context.Context, bId string) (*domain.Boo
 		return nil, err
 	}
 
-	return bk, nil
+	return bk.Ref, nil
 }
 
-func (r *BookRepository) GetBooks(c context.Context) ([]*domain.Book, error) {
+func (r *BookRepository) GetBooks(c context.Context) ([]*domain.BookRef, error) {
 	bm, err := BoomFromContext(c)
 	if err != nil {
 		return nil, err
@@ -47,10 +47,15 @@ func (r *BookRepository) GetBooks(c context.Context) ([]*domain.Book, error) {
 		return nil, err
 	}
 
-	return bs, nil
+	brs := []*domain.BookRef{}
+	for _, v := range bs {
+		brs = append(brs, v.Ref)
+	}
+
+	return brs, nil
 }
 
-func (r *BookRepository) PutBook(c context.Context, b *domain.Book) (*domain.Book, error) {
+func (r *BookRepository) PutBook(c context.Context, b *domain.Book) (*domain.BookRef, error) {
 	bm, err := BoomFromContext(c)
 	if err != nil {
 		return nil, err
@@ -60,5 +65,5 @@ func (r *BookRepository) PutBook(c context.Context, b *domain.Book) (*domain.Boo
 		return nil, err
 	}
 
-	return b, nil
+	return b.Ref, nil
 }
