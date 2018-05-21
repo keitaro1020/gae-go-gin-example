@@ -28,12 +28,10 @@ func (h *Handler) CreateBook(c *gin.Context) {
 }
 
 func (h *Handler) PutBook(c *gin.Context) {
-	id := c.Param("id")
-
 	ac := appengine.NewContext(c.Request)
 
 	r := repository.NewBookRepository()
-	b, err := r.GetBookByID(ac, id)
+	b, err := r.GetBookByID(ac, c.Param("id"))
 	if err != nil {
 		ErrorResponse(c, err)
 		return
@@ -67,12 +65,10 @@ func (h *Handler) GetBooks(c *gin.Context) {
 }
 
 func (h *Handler) GetBook(c *gin.Context) {
-	id := c.Param("id")
-
 	ac := appengine.NewContext(c.Request)
 
 	r := repository.NewBookRepository()
-	b, err := r.GetBookByID(ac, id)
+	b, err := r.GetBookByID(ac, c.Param("id"))
 	if err != nil {
 		ErrorResponse(c, err)
 		return
