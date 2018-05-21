@@ -2,8 +2,8 @@ package repository
 
 import (
 	"context"
-	"go.mercari.io/datastore/boom"
 	"go.mercari.io/datastore"
+	"go.mercari.io/datastore/boom"
 )
 
 func BoomFromContext(ctx context.Context) (*boom.Boom, error) {
