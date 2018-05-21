@@ -12,14 +12,12 @@ func NewBookRepository() *BookRepository {
 }
 
 func (r *BookRepository) GetBookByID(c context.Context, bId string) (*domain.Book, error) {
-	bk := domain.Book{
-		ID: bId,
-	}
-
 	bm, err := BoomFromContext(c)
 	if err != nil {
 		return nil, err
 	}
+
+	bk := domain.NewBook(bId)
 
 	if err := bm.Get(&bk); err != nil {
 		return nil, err
@@ -29,7 +27,6 @@ func (r *BookRepository) GetBookByID(c context.Context, bId string) (*domain.Boo
 }
 
 func (r *BookRepository) GetBooks(c context.Context) ([]*domain.Book, error) {
-
 	bm, err := BoomFromContext(c)
 	if err != nil {
 		return nil, err
