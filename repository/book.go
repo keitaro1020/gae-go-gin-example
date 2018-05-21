@@ -19,11 +19,11 @@ func (r *BookRepository) GetBookByID(c context.Context, bId string) (*domain.Boo
 
 	bk := domain.NewBook(bId)
 
-	if err := bm.Get(&bk); err != nil {
+	if err := bm.Get(bk); err != nil {
 		return nil, err
 	}
 
-	return &bk, nil
+	return bk, nil
 }
 
 func (r *BookRepository) GetBooks(c context.Context) ([]*domain.Book, error) {

@@ -16,8 +16,9 @@ func router() http.Handler {
 	r := gin.New()
 
 	r.GET("/hello", h.Hello)
-	r.POST("/book", h.CreateBook)
-	r.GET("/book", h.GetBooks)
+
+	r.POST("/books", h.CreateBook)
+	r.GET("/books", h.GetBooks)
 
 	return r
 }
