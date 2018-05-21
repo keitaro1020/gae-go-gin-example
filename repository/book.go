@@ -3,7 +3,6 @@ package repository
 import (
 	"context"
 	"github.com/keitaro1020/gae-go-gin-example/domain"
-	"google.golang.org/appengine/log"
 )
 
 type BookRepository struct{}
